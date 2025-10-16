@@ -47,6 +47,7 @@ BuildRequires:  gcc-c++
 BuildRequires:  git-core
 BuildRequires:  xcursorgen
 BuildRequires:  unzip
+BuildRequires:  fdupes
 
 Provides:       Plasma(ColorScheme-Vinyl-Dark)
 Provides:       Plasma(ColorScheme-Vinyl-Light)
@@ -98,6 +99,11 @@ for variant in Black White; do
             %{buildroot}%{_datadir}/icons/Vinyl-${variant}/
     fi
 done
+
+%fdupes %{buildroot}/%{_prefix}
+
+%post   -p /sbin/ldconfig
+%postun -p /sbin/ldconfig
 
 %files
 %license LICENSES/
