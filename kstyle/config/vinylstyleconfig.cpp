@@ -23,7 +23,7 @@
 #include "../vinyl.h"
 #include "../config-vinyl.h"
 #include "vinylstyleconfigdata.h"
-
+#include "vinylstyleversion.h"
 #include <QDBusMessage>
 #include <QDBusConnection>
 
@@ -183,12 +183,13 @@ namespace Vinyl
         _menuOpacity->setValue( StyleConfigData::menuOpacity() );
         _menuOpacitySpinBox->setValue( StyleConfigData::menuOpacity() );
         _sidebarOpacity->setValue( StyleConfigData::dolphinSidebarOpacity() );
-	_sidebarOpacitySpinBox->setValue(StyleConfigData::dolphinSidebarOpacity());
-	_buttonSize->setValue( StyleConfigData::buttonSize() );
+	    _sidebarOpacitySpinBox->setValue(StyleConfigData::dolphinSidebarOpacity());
+	    _buttonSize->setValue( StyleConfigData::buttonSize() );
         _kTextEditDrawFrame->setChecked( StyleConfigData::kTextEditDrawFrame() );
         _widgetDrawShadow->setChecked( StyleConfigData::widgetDrawShadow() );
         _transparentDolphinView->setChecked( StyleConfigData::transparentDolphinView() );
         _cornerRadius->setValue( StyleConfigData::cornerRadius() );
+        _versionLabel->setText(VINYL_VERSION_STRING)
 
 
     }
