@@ -189,9 +189,7 @@ namespace Vinyl
         _widgetDrawShadow->setChecked( StyleConfigData::widgetDrawShadow() );
         _transparentDolphinView->setChecked( StyleConfigData::transparentDolphinView() );
         _cornerRadius->setValue( StyleConfigData::cornerRadius() );
-        _versionLabel->setText(VINYL_VERSION_STRING)
-
-
+        _versionLabel->setText(VINYL_VERSION_STRING);
     }
 
 }
