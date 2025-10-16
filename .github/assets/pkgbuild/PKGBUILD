@@ -5,11 +5,11 @@
 # basic info
 dev="DeltaCopy"
 pkgname="vinyl-git"
-_pkgname="vinyl-theme"
+_pkgname="vinyl"
 pkgver= # change this to match the name of the release tag you want to build from
 pkgrel=1
 pkgdesc="Vinyl Theme for KDE Plasma 6"
-url="https://github.com/$dev/vinyl-theme"
+url="https://github.com/$dev/vinyl"
 arch=('x86_64' 'aarch64')
 license=("GPL-2.0-or-later")
 pkgdir="$srcdir/fakeinstall_kf6"
