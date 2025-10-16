@@ -52,13 +52,16 @@ jobs:
       - name: Create rpm tree
         run: rpmdev-setuptree
       - name: Move tarball asset to rpm build sources location
-        run: mv ${{ inputs.cache-file-path }} $HOME/rpmbuild/SOURCES/${{ inputs.version }}.tar.gz
+        run: |
+          mv ${{ inputs.cache-file-path }} $HOME/rpmbuild/SOURCES/${{ inputs.version }}.tar.gz
+          ls -lart $HOME/rpmbuild/SOURCES
       - name: Move rpm specfile to specs
         run: mv ${{ env.SPEC_FILE }} $HOME/rpmbuild/SPECS/
       - name: Build rpm binary package
         run: |
           cd $HOME/rpmbuild/SPECS
-          rpmbuild -bb --quiet vinyl.spec
+          rpmbuild -bb vinyl.spec
+          ls -lart $HOME/rpmbuild/BUILD
           rpm_file=$(find $HOME/rpmbuild/RPMS/x86_64 -name "*.rpm*" ! -name "*src*" ! -name "*debug*")
           echo "rpm_file = $rpm_file"
           source /etc/os-release

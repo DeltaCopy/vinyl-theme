@@ -8,7 +8,7 @@ Source0:        https://github.com/%{dev}/%{srcname}-theme/archive/refs/tags/%{v
 
 Name:           %{srcname}-theme
 Version:        %{release_tag}
-Release:        1%{?git:+git~%{gitrev}}%{?dist}
+Release:        0
 Summary:        A modern style for qt applications
 
 License:        GPLv2+ and MIT
@@ -72,7 +72,7 @@ Vinyl is a fork of Lightly (a Breeze fork) theme style that aims to be
 visually modern and minimalistic.
 
 %prep
-%cmake_kf6
+%autosetup -n %{name}-%{version} -p1
 
 pushd cursors
   cp AUTHORS ../AUTHORS.cursors
@@ -83,6 +83,7 @@ popd
 
 
 %build
+%cmake -DCMAKE_INSTALL_PREFIX=/usr -DCMAKE_BUILD_TYPE=Release -DBUILD_TESTING=OFF -DKDE_INSTALL_USE_QT_SYS_PATHS=ON
 %cmake_build
 
 
