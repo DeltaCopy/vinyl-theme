@@ -1,0 +1,8 @@
+[ContrastEffect]
+enabled=true
+contrast=0.185
+intensity=0.925
+saturation=9.5
+
+[AdaptiveTransparency]
+enabled=true

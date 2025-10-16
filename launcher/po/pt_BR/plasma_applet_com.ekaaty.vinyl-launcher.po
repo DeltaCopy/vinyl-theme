@@ -1,0 +1,167 @@
+# Configurable Application Launcher
+# Copyright (C) 2025 Christian Tosta
+# This file is distributed under the same license as the Vinyl Menu package.
+# Christian Tosta <7252968+christiantosta@users.noreply.github.com>, 2025.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Vinyl Launcher 6.4.5\n"
+"Report-Msgid-Bugs-To: https://github.com/ekaaty/vinyl-theme/issues\n"
+"POT-Creation-Date: 2025-10-08 10:43-0300\n"
+"PO-Revision-Date: 2025-10-08 10:45-0300\n"
+"Last-Translator: Christian Tosta "
+"<7252968+christiantosta@users.noreply.github.com>\n"
+"Language: Brazilian Portuguese\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: src/package/contents/config/config.qml:13
+#, kde-format
+msgid "General"
+msgstr "Geral"
+
+#: src/package/contents/ui/code/tools.js:43
+#, kde-format
+msgid "Remove from Favorites"
+msgstr "Remover dos Favoritos"
+
+#: src/package/contents/ui/code/tools.js:47
+#, kde-format
+msgid "Add to Favorites"
+msgstr "Adicionar aos Favoritos"
+
+#: src/package/contents/ui/code/tools.js:73
+#, kde-format
+msgid "On All Activities"
+msgstr "Em todas as Atividades"
+
+#: src/package/contents/ui/code/tools.js:123
+#, kde-format
+msgid "On the Current Activity"
+msgstr "Na Atividade Atual"
+
+#: src/package/contents/ui/code/tools.js:137
+#, kde-format
+msgid "Show in Favorites"
+msgstr "Mostrar nos Favoritos"
+
+#: src/package/contents/ui/ConfigGeneral.qml:44
+#, kde-format
+msgid "Icon"
+msgstr "Ícone:"
+
+#: src/package/contents/ui/ConfigGeneral.qml:128
+#, kde-format
+msgctxt "@item:inmenu Open icon chooser dialog"
+msgid "Choose…"
+msgstr "Escolher…"
+
+#: src/package/contents/ui/ConfigGeneral.qml:133
+#, kde-format
+msgctxt "@item:inmenu Reset icon to default"
+msgid "Clear Icon"
+msgstr "Limpar Ícone"
+
+#: src/package/contents/ui/ConfigGeneral.qml:149
+#, kde-format
+msgid "Show favorites first"
+msgstr "Mostrar favoritos primeiro"
+
+#: src/package/contents/ui/ConfigGeneral.qml:154
+#, kde-format
+msgid "Grid icon size"
+msgstr "Tamanho do ícone da grade"
+
+#: src/package/contents/ui/ConfigGeneral.qml:156
+#, kde-format
+msgid "Medium"
+msgstr "Médio"
+
+#: src/package/contents/ui/ConfigGeneral.qml:157
+#, kde-format
+msgid "Large"
+msgstr "Grande"
+
+#: src/package/contents/ui/ConfigGeneral.qml:158
+#, kde-format
+msgid "Huge"
+msgstr "Enorme"
+
+#: src/package/contents/ui/ConfigGeneral.qml:164
+#, kde-format
+msgid "Menu position"
+msgstr "Posição do menu"
+
+#: src/package/contents/ui/ConfigGeneral.qml:166
+#, kde-format
+msgid "Default"
+msgstr "Padrão"
+
+#: src/package/contents/ui/ConfigGeneral.qml:167
+#, kde-format
+msgid "Center"
+msgstr "Centro"
+
+#: src/package/contents/ui/ConfigGeneral.qml:173
+#, kde-format
+msgid "Number of columns"
+msgstr "Número de colunas"
+
+#: src/package/contents/ui/ConfigGeneral.qml:180
+#, kde-format
+msgid "Number of rows"
+msgstr "Número de linhas"
+
+#: src/package/contents/ui/main.qml:231
+#, kde-format
+msgid "Edit Applications…"
+msgstr "Editar Aplicativos…"
+
+#: src/package/contents/ui/SideBar.qml:57
+msgid "Settings"
+msgstr "Configurações"
+
+#: src/package/contents/ui/SideBar.qml:63
+msgid "Personalization"
+msgstr "Personalização"
+
+#: src/package/contents/ui/SideBar.qml:69
+msgid "Printers"
+msgstr "Impressoras"
+
+#: src/package/contents/ui/SideBar.qml:75
+msgid "Update Software"
+msgstr "Atualização de Software"
+
+#: src/package/contents/ui/SideBar.qml:81
+msgid "Help and Support"
+msgstr "Ajuda e Suporte"
+
+#: src/package/contents/ui/SideBar.qml:87
+msgid "About this System"
+msgstr "Sobre este Sistema"
+
+#: src/package/contents/ui/VinylMenuLauncher.qml:357
+#, kde-format
+msgid "My favorite items"
+msgstr "Meus ítens favoritos"
+
+#: src/package/contents/ui/VinylMenuLauncher.qml:388
+#: src/package/contents/ui/VinylMenuLauncher.qml:491
+#, kde-format
+msgid "All applications"
+msgstr "Todos aplicativos"
+
+#: src/package/contents/ui/VinylMenuLauncher.qml:449
+msgid "Shows session exit screen"
+msgstr "Mostrar tela de encerramento de sessão"
+
+#: src/package/contents/ui/VinylMenuLauncher.qml:454
+msgid "Lock screen"
+msgstr "Bloquear tela"
+
+#: src/package/contents/ui/VinylMenuLauncher.qml:492
+#, kde-format
+msgid "Favorites"
+msgstr "Favoritos"

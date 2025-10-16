@@ -1,0 +1,60 @@
+# Archlinux
+# Build Vinyl from release tag and publish .zst package
+
+on:
+  workflow_call:
+    inputs:
+      version:
+        required: true
+        type: string
+env:
+  PKGBUILD: $GITHUB_WORKSPACE/.github/assets/pkgbuild/PKGBUILD
+  BUILD_DIR: /var/tmp/vinyl-archlinux
+jobs:
+  build:
+    runs-on: ubuntu-24.04
+    container: archlinux:latest
+    steps:
+      - name: Checkout local
+        uses: actions/checkout@v4.2.0
+        with:
+          repository: ${{ github.repository }}
+          sparse-checkout: .github
+          sparse-checkout-cone-mode: false
+      - name: System update
+        run: pacman -Syu --noconfirm
+      - name: Install additional packages
+        run: |
+          # base-devel includes build dependencies (fakeroot, make, gcc, pkgconf)
+          pacman -Syq base-devel git --noconfirm
+      - name: Set parallel makeflags
+        run: sed -i 's/.*MAKEFLAGS=.*/MAKEFLAGS="-j $(nproc)"/' /etc/makepkg.conf
+      - name: Setup build user
+        run: |
+          useradd builduser -m # Create the builduser
+          passwd -d builduser # Delete the buildusers password
+          printf 'builduser ALL=(ALL) ALL\n' | tee -a /etc/sudoers # Allow the builduser passwordless sudo
+      - name: Update PKGBUILD file with new checksum and git tag values
+        run: |
+          # update tag with latest version
+          mkdir ${{ env.BUILD_DIR }}
+          cp ${{ env.PKGBUILD }} ${{ env.BUILD_DIR }}
+          sed -i "s/.*pkgver=.*/pkgver=${{ inputs.version }}/" /var/tmp/vinyl-archlinux/PKGBUILD
+      - name: Change permissions of build directory
+        run: |
+          chown builduser:builduser -R ${{ env.BUILD_DIR }}
+      - name: Generate package checksum
+        run: |
+          sudo -u builduser bash -c 'cd ${{ env.BUILD_DIR }}; makepkg -g >> PKGBUILD; cat PKGBUILD'
+      - name: Build package
+        run: |
+          sudo -u builduser bash -c 'cd ${{ env.BUILD_DIR }}; makepkg -s --noconfirm'
+          zst_file=$(find ${{ env.BUILD_DIR }} -name "*.zst*")
+          publish_filename=vinyl-${{ inputs.version }}-x86_64.pkg.zst
+          mv "$zst_file" $publish_filename
+          echo "ZST_ASSET=$publish_filename" >> "$GITHUB_ENV"
+      - name: Release
+        uses: softprops/action-gh-release@v2.0.8
+        if: startsWith(github.ref, 'refs/tags/')
+        with:
+          files: ${{ env.ZST_ASSET }}

@@ -1,0 +1,55 @@
+# Build Vinyl and publish release
+name: Vinyl build & release
+on:
+  push:
+    tags:
+      - "v*"
+env:
+  BUILD_REPO: https://github.com/DeltaCopy/vinyl-theme
+jobs:
+  release-ci:
+    runs-on: ubuntu-24.04
+    outputs:
+      VERSION: ${{ steps.step_getlatest_tag.outputs.VERSION }}
+      ASSET: ${{ steps.step_get_asset.outputs.ASSET }}
+    steps:
+      - name: Checkout local
+        uses: actions/checkout@v4.2.0
+        with:
+          repository: ${{ github.repository }}
+          sparse-checkout: |
+            .github/workflows
+
+      - name: Install build dependencies
+        run: sudo apt-get install git -y -qq
+      - name: Get latest Vinyl release tag
+        id: step_getlatest_tag
+        run: |
+          # get latest release tag from remote
+          latest_tag=$(git -c 'versionsort.suffix=-' ls-remote --exit-code --refs --sort='version:refname' --tags $BUILD_REPO '*.*' \
+                       | tail --lines=1 | cut --delimiter='/' --fields=3)
+
+          echo "INFO: Latest tag = $latest_tag"
+          test ! -z "$latest_tag" && echo "LATEST_TAG=$latest_tag" >> "$GITHUB_ENV" \
+          || echo "ERROR: Latest tag not found" || exit 1
+
+           # use the tag name but remove the 'v' for the asset name to publish
+          tagname=$(echo $latest_tag | sed 's/v//')
+
+          echo "VERSION=$tagname" >> "$GITHUB_OUTPUT"
+      - name: Download tag asset
+        id: step_get_asset
+        run: |
+          curl -L $BUILD_REPO/archive/refs/tags/${{ env.LATEST_TAG }}.tar.gz --output vinyl-${{ env.LATEST_TAG }}.tar.gz
+          echo "ASSET=vinyl-${{ env.LATEST_TAG }}.tar.gz" >> "$GITHUB_OUTPUT"
+      - uses: actions/cache/save@v4
+        id: cache
+        with:
+          path: ${{ steps.step_get_asset.outputs.ASSET }}
+          key: ${{ runner.os }}-v${{ steps.step_getlatest_tag.outputs.VERSION }}-${{ hashFiles(steps.step_get_asset.outputs.ASSET) }}
+
+  Archlinux:
+    needs: release-ci
+    uses: ./.github/workflows/archlinux.yml
+    with:
+      version: ${{ needs.release-ci.outputs.VERSION }}
