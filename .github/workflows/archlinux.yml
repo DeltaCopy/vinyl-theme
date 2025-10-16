@@ -8,7 +8,7 @@ on:
         required: true
         type: string
 env:
-  PKGBUILD: $GITHUB_WORKSPACE/.github/assets/pkgbuild/PKGBUILD
+  PKGBUILD: $GITHUB_WORKSPACE/.github/assets/archlinux/PKGBUILD
   BUILD_DIR: /var/tmp/vinyl-archlinux
 jobs:
   build:

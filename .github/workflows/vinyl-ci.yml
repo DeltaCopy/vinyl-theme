@@ -53,3 +53,11 @@ jobs:
     uses: ./.github/workflows/archlinux.yml
     with:
       version: ${{ needs.release-ci.outputs.VERSION }}
+
+  Fedora:
+    needs: release-ci
+    uses: ./.github/workflows/fedora.yml
+    with:
+      cache-file-path: ${{ needs.release-ci.outputs.ASSET }}
+      version: ${{ needs.release-ci.outputs.VERSION }}
+      containers: "['fedora:latest', 'fedora:41', 'fedora:40']"
