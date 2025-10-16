@@ -5,6 +5,7 @@
 # basic info
 dev="DeltaCopy"
 pkgname="vinyl-git"
+_gitname="vinyl-theme"
 _pkgname="vinyl"
 pkgver= # change this to match the name of the release tag you want to build from
 pkgrel=1
@@ -50,25 +51,15 @@ depends=(
 
 depends=("${depends[@]}")
 
-pkgver() {
-  cd "$srcdir/$_pkgname.git"
-  printf "r%s.%s" "$(git rev-list --count HEAD)" "$(git rev-parse --short HEAD)"
-}
-
-prepare() {
-  cd "$srcdir/$_pkgname.git"
-}
-
 build() (
   local cmake_options=(
     -B $build_dir
-    -S "$_pkgname.git"
+    -S "$_gitname-${pkgver}"
     -DBUILD_TESTING=OFF
     -Wno-dev
   )
 
   cmake "${cmake_options[@]}"
-
   cmake --build $build_dir
 )
 
