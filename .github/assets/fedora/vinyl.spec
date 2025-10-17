@@ -85,6 +85,7 @@ popd
 
 
 %build
+%cmake -DWITH_MOZILLA=ON
 %cmake_build
 
 %install
