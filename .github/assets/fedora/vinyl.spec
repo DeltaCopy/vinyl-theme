@@ -99,8 +99,6 @@ for variant in Black White; do
     fi
 done
 
-for metainfo in 
-
 %files
 %license LICENSES/
 %doc AUTHORS.md COPYING.md README.md
@@ -115,11 +113,12 @@ for metainfo in
 %{_libdir}/cmake/Vinyl/
 
 # Window Decoration
-%if %{with decoration}
-%{_qt6_plugindir}/org.kde.kdecoration3/org.kde.vinyl.so
-%{_qt6_plugindir}/org.kde.kdecoration3.kcm/kcm_vinyldecoration.so
+%dir %{_kf6_qtplugindir}/org.kde.kdecoration3.kcm
+%{_kf6_qtplugindir}/org.kde.kdecoration3.kcm/kcm_vinyldecoration.so
+
+%dir %{_kf6_qtplugindir}/org.kde.kdecoration3
+%{_kf6_qtplugindir}/org.kde.kdecoration3/org.kde.vinyl.so
 %{_datadir}/applications/kcm_vinyldecoration.desktop
-%endif
 
 # Colors
 %{_datadir}/color-schemes/Vinyl*Dark.colors
@@ -163,9 +162,7 @@ for metainfo in
 %{_datadir}/metainfo/*.vinyl.desktop.light.appdata.xml
 
 # Mozilla Firefox Themes
-%if %{with mozilla}
 %{_datadir}/mozilla/extensions/*
-%endif
 
 # SDDM Theme
 %{_datadir}/locale/*/*/sddm_theme_*.vinyl-sddm.mo
