@@ -85,7 +85,6 @@ popd
 
 
 %build
-%cmake -DWITH_MOZILLA=ON
 %cmake_build
 
 %install
@@ -163,7 +162,10 @@ done
 %{_datadir}/metainfo/*.vinyl.desktop.light.appdata.xml
 
 # Mozilla Firefox Themes
+%if %{with mozilla}
 %{_datadir}/mozilla/extensions/*
+%endif
+
 
 # SDDM Theme
 %{_datadir}/locale/*/*/sddm_theme_*.vinyl-sddm.mo
