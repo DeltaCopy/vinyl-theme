@@ -72,6 +72,9 @@ if(NOT STANDALONE)
         src/package 
         ${VINYL_LAUNCHER_PLUGIN_ID} 
     )
+    # install the metainfo file
+    install( FILES com.ekaaty.vinyl-launcher.appdata.xml DESTINATION ${KDE_INSTALL_METAINFODIR} )
+
 else()
     install(
         DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/src/package/

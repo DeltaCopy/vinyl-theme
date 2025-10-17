@@ -47,7 +47,6 @@ BuildRequires:  gcc-c++
 BuildRequires:  git-core
 BuildRequires:  xcursorgen
 BuildRequires:  unzip
-BuildRequires:  fdupes
 
 Provides:       Plasma(ColorScheme-Vinyl-Dark)
 Provides:       Plasma(ColorScheme-Vinyl-Light)
@@ -73,7 +72,9 @@ Vinyl is a fork of Lightly (a Breeze fork) theme style that aims to be
 visually modern and minimalistic.
 
 %prep
-%autosetup -n %{name}-%{version} -p1
+%setup -n %{name}-%{version}
+
+%cmake_kf6
 
 pushd cursors
   cp AUTHORS ../AUTHORS.cursors
@@ -84,9 +85,7 @@ popd
 
 
 %build
-%cmake -DCMAKE_INSTALL_PREFIX=/usr -DCMAKE_BUILD_TYPE=Release -DBUILD_TESTING=OFF -DKDE_INSTALL_USE_QT_SYS_PATHS=ON
 %cmake_build
-
 
 %install
 %cmake_install \
@@ -100,10 +99,7 @@ for variant in Black White; do
     fi
 done
 
-%fdupes %{buildroot}/%{_prefix}
-
-%post   -p /sbin/ldconfig
-%postun -p /sbin/ldconfig
+for metainfo in 
 
 %files
 %license LICENSES/

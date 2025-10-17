@@ -80,6 +80,12 @@ if(NOT STANDALONE)
         look-and-feel
         lookandfeel
     )
+
+    # install the metainfo files
+    foreach(FILE com.ekaaty.vinyl.desktop.dark.appdata.xml com.ekaaty.vinyl.desktop.light.appdata.xml )
+        install( FILES ${FILE} DESTINATION ${KDE_INSTALL_METAINFODIR} )
+    endforeach()
+    
 else()
     install(
         DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/${VINYL_PLUGIN_ID_PREFIX}.dark/

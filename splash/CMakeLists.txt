@@ -74,6 +74,9 @@ if(NOT STANDALONE)
         look-and-feel
         lookandfeel
     )
+    # install the metainfo file
+    install( FILES com.ekaaty.vinyl-splash.appdata.xml DESTINATION ${KDE_INSTALL_METAINFODIR} )
+
 else()
     install(
         DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/src/package/

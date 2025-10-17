@@ -73,6 +73,8 @@ if(NOT STANDALONE)
         layout-templates
         layouttemplates
     )
+    # install the metainfo file
+    install( FILES com.ekaaty.vinyl.desktop.bottomPanel.appdata.xml DESTINATION ${KDE_INSTALL_METAINFODIR} )
 else()
     install(
         DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/${VINYL_PLUGIN_ID_PREFIX}.bottomPanel/
