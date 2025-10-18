@@ -21,7 +21,7 @@ jobs:
         uses: actions/checkout@v4.2.0
         with:
           repository: ${{ github.repository }}
-          sparse-checkout: .github/assets/specs/vinyl.spec
+          sparse-checkout: .github/assets/fedora/vinyl.spec
       - name: Update tag version inside spec file
         run: sed -i "s/.*%define release_tag.*/%define release_tag ${{ inputs.version }}/" ${{ env.SPEC_FILE }}
       - name: Install build dependencies
