@@ -10,19 +10,12 @@ on:
       version:
         required: true
         type: string
-      containers:
-        required: true
-        type: string
 env:
   SPEC_FILE: $GITHUB_WORKSPACE/.github/assets/specs/vinyl.spec
 jobs:
   build:
-    strategy:
-      max-parallel: 1
-      matrix:
-        image: ${{ fromJson(inputs.containers) }}
     runs-on: ubuntu-24.04
-    container: ${{ matrix.image }}
+    container: opensuse/tumbleweed:latest
     steps:
       - name: Install build dependencies
         run: |
@@ -49,7 +42,9 @@ jobs:
           repository: ${{ github.repository }}
           sparse-checkout: .github/assets/specs/vinyl.spec
       - name: Update tag version inside spec file
-        run: sed -i "s/.*%define release_tag.*/%define release_tag ${{ inputs.version }}/" ${{ env.SPEC_FILE }}
+        run: |
+          ls -lart $GITHUB_WORKSPACE/.github/assets/specs/
+          sed -i "s/.*%define release_tag.*/%define release_tag ${{ inputs.version }}/" ${{ env.SPEC_FILE }}
       - name: Copy opensuse specfile to rpm build location
         run: cp ${{ env.SPEC_FILE }} /usr/src/packages/SPECS
       - name: Create rpm binary file
