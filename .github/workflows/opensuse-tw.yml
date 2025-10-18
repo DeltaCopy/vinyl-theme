@@ -51,8 +51,8 @@ jobs:
           rpmbuild -bb vinyl.spec
           rpm_file=$(find /usr/src/packages/RPMS/x86_64 -name "*.rpm*" ! -name "*src*" ! -name "*debug*")
           echo "rpm_file = $rpm_file"
-          mv $rpm_file /usr/src/packages/RPMS/x86_64/darkly-${{ inputs.version }}.openSUSE-tumbleweed.x86_64.rpm
-          echo "RPM_ASSET= /usr/src/packages/RPMS/x86_64/darkly-${{ inputs.version }}.openSUSE-tumbleweed.x86_64.rpm" >> "$GITHUB_ENV"
+          mv $rpm_file /usr/src/packages/RPMS/x86_64/vinyl-${{ inputs.version }}.openSUSE-tumbleweed.x86_64.rpm
+          echo "RPM_ASSET= /usr/src/packages/RPMS/x86_64/vinyl-${{ inputs.version }}.openSUSE-tumbleweed.x86_64.rpm" >> "$GITHUB_ENV"
       - name: Release
         uses: softprops/action-gh-release@v2.0.8
         if: startsWith(github.ref, 'refs/tags/')
