@@ -17,6 +17,13 @@ jobs:
     runs-on: ubuntu-24.04
     container: opensuse/tumbleweed:latest
     steps:
+      - name: Checkout local
+        uses: actions/checkout@v4.2.0
+        with:
+          repository: ${{ github.repository }}
+          sparse-checkout: .github/assets/specs/vinyl.spec
+      - name: Update tag version inside spec file
+        run: sed -i "s/.*%define release_tag.*/%define release_tag ${{ inputs.version }}/" ${{ env.SPEC_FILE }}
       - name: Install build dependencies
         run: |
           zypper in -y --allow-downgrade --no-recommends 'cmake' \
@@ -36,15 +43,6 @@ jobs:
           fail-on-cache-miss: true
       - name: Move tarball asset to rpm build sources location
         run: mv ${{ inputs.cache-file-path }} /usr/src/packages/SOURCES/${{ inputs.version }}.tar.gz
-      - name: Checkout local
-        uses: actions/checkout@v4.2.0
-        with:
-          repository: ${{ github.repository }}
-          sparse-checkout: .github/assets/specs/vinyl.spec
-      - name: Update tag version inside spec file
-        run: |
-          ls -lart $GITHUB_WORKSPACE/.github/assets/specs/
-          sed -i "s/.*%define release_tag.*/%define release_tag ${{ inputs.version }}/" ${{ env.SPEC_FILE }}
       - name: Copy opensuse specfile to rpm build location
         run: cp ${{ env.SPEC_FILE }} /usr/src/packages/SPECS
       - name: Create rpm binary file
