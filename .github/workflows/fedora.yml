@@ -15,7 +15,6 @@ on:
         type: string
 env:
   SPEC_FILE: $GITHUB_WORKSPACE/.github/assets/fedora/vinyl.spec
-  METAINFO_DIR: $GITHUB_WORKSPACE/.github/assets/metainfo
 jobs:
   build:
     strategy:

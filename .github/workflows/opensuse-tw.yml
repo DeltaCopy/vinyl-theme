@@ -15,7 +15,7 @@ env:
 jobs:
   build:
     runs-on: ubuntu-24.04
-    container: opensuse/tumbleweed:latest
+    container: ${{ matrix.image }}
     steps:
       - name: Install build dependencies
         run: |
