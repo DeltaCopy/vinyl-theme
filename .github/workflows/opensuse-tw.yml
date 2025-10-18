@@ -34,7 +34,7 @@ jobs:
             'cmake(KF6WindowSystem)' 'cmake(KF6KirigamiPlatform)' 'cmake(KWayland)' 'cmake(KWin)' \
             'cmake(Plasma)' 'cmake(Qt6Core)' 'cmake(Qt6Core5Compat)' 'cmake(Qt6DBus)' 'cmake(Qt6Gui)' \
             'cmake(Qt6UiTools)' 'pkgconfig(epoxy)' 'python3-CairoSVG' 'python3-lxml' \
-            'extra-cmake-modules' 'gcc-c++' 'git' 'xcursorgen' 'unzip' 'zstd'
+            'extra-cmake-modules' 'gcc-c++' 'git' 'xcursorgen' 'unzip' 'zstd' 'rpm-build'
       - uses: actions/cache/restore@v4
         id: cache
         with:
