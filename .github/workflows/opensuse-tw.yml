@@ -19,7 +19,7 @@ jobs:
     steps:
       - name: Install build dependencies
         run: |
-          zypper in -y zypper in --allow-downgrade --no-recommends 'cmake' \
+          zypper in -y --allow-downgrade --no-recommends 'cmake' \
             'cmake(KDecoration3)' 'cmake(KF6ConfigWidgets)' 'cmake(KF6Config)' 'cmake(KF6CoreAddons)' \
             'cmake(KF6Crash)' 'cmake(KF6DocTools)' 'cmake(KF6FrameworkIntegration)' \
             'cmake(KF6GlobalAccel)' 'cmake(KF6GuiAddons)' 'cmake(KF6I18n)' 'cmake(KF6IconThemes)' \
