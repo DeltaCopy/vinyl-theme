@@ -11,7 +11,7 @@ on:
         required: true
         type: string
 env:
-  SPEC_FILE: $GITHUB_WORKSPACE/.github/assets/specs/vinyl.spec
+  SPEC_FILE: $GITHUB_WORKSPACE/.github/assets/fedora/vinyl.spec
 jobs:
   build:
     runs-on: ubuntu-24.04
