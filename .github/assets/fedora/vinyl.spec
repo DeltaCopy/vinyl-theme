@@ -40,8 +40,8 @@ BuildRequires:  cmake(Qt6DBus)
 BuildRequires:  cmake(Qt6Gui)
 BuildRequires:  cmake(Qt6UiTools)
 BuildRequires:  pkgconfig(epoxy)
-BuildRequires:  python3dist(cairosvg) 
-BuildRequires:  python3dist(lxml) 
+BuildRequires:  python3dist(cairosvg)
+BuildRequires:  python3dist(lxml)
 BuildRequires:  extra-cmake-modules >= 6.13.0
 BuildRequires:  gcc-c++
 BuildRequires:  git-core
@@ -174,5 +174,12 @@ done
 # Wallpapers
 %{_datadir}/wallpapers/Vinyl*
 
+%if 0%{?fedora} || 0%{?centos_version} || 0%{?rhel_version}
 %changelog
 %autochangelog
+
+%else
+# OpenSUSE
+%changelog
+
+%endif

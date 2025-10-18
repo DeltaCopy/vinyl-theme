@@ -54,12 +54,17 @@ jobs:
   #   with:
   #     version: ${{ needs.release-ci.outputs.VERSION }}
 
-  Fedora:
+  # Fedora:
+  #   needs: release-ci
+  #   uses: ./.github/workflows/fedora.yml
+  #   with:
+  #     cache-file-path: ${{ needs.release-ci.outputs.ASSET }}
+  #     version: ${{ needs.release-ci.outputs.VERSION }}
+  #     containers: "['fedora:latest', 'fedora:42', 'fedora:41']"
+
+  openSUSE-Tumbleweed:
     needs: release-ci
-    uses: ./.github/workflows/fedora.yml
+    uses: ./.github/workflows/opensuse-tw.yml
     with:
       cache-file-path: ${{ needs.release-ci.outputs.ASSET }}
       version: ${{ needs.release-ci.outputs.VERSION }}
-      containers: "['fedora:latest']"
-
-      

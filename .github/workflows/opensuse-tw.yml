@@ -1,0 +1,60 @@
+# openSUSE Tumbleweed
+# Build Vinyl from release tag and publish .rpm package
+
+on:
+  workflow_call:
+    inputs:
+      cache-file-path:
+        required: true
+        type: string
+      version:
+        required: true
+        type: string
+env:
+  SPEC_FILE: $GITHUB_WORKSPACE/.github/assets/specs/vinyl.spec
+jobs:
+  build:
+    runs-on: ubuntu-24.04
+    container: opensuse/tumbleweed:latest
+    steps:
+      - name: Install build dependencies
+        run: |
+          zypper in -y zypper in --allow-downgrade --no-recommends 'cmake' \
+            'cmake(KDecoration3)' 'cmake(KF6ConfigWidgets)' 'cmake(KF6Config)' 'cmake(KF6CoreAddons)' \
+            'cmake(KF6Crash)' 'cmake(KF6DocTools)' 'cmake(KF6FrameworkIntegration)' \
+            'cmake(KF6GlobalAccel)' 'cmake(KF6GuiAddons)' 'cmake(KF6I18n)' 'cmake(KF6IconThemes)' \
+            'cmake(KF6KCMUtils)' 'cmake(KF6KIO)' 'cmake(KF6Notifications)' 'cmake(KF6Package)' \
+            'cmake(KF6WindowSystem)' 'cmake(KF6KirigamiPlatform)' 'cmake(KWayland)' 'cmake(KWin)' \
+            'cmake(Plasma)' 'cmake(Qt6Core)' 'cmake(Qt6Core5Compat)' 'cmake(Qt6DBus)' 'cmake(Qt6Gui)' \
+            'cmake(Qt6UiTools)' 'pkgconfig(epoxy)' 'python3-CairoSVG' 'python3-lxml' \
+            'extra-cmake-modules' 'gcc-c++' 'git' 'xcursorgen' 'unzip'
+      - uses: actions/cache/restore@v4
+        id: cache
+        with:
+          key: ${{ runner.os }}-v${{ inputs.version }}-${{ hashFiles(inputs.cache-file-path) }}
+          path: ${{ inputs.cache-file-path }}
+          fail-on-cache-miss: true
+      - name: Move tarball asset to rpm build sources location
+        run: mv ${{ inputs.cache-file-path }} /usr/src/packages/SOURCES/${{ inputs.version }}.tar.gz
+      - name: Checkout local
+        uses: actions/checkout@v4.2.0
+        with:
+          repository: ${{ github.repository }}
+          sparse-checkout: .github/assets/specs/vinyl.spec
+      - name: Update tag version inside spec file
+        run: sed -i "s/.*%define release_tag.*/%define release_tag ${{ inputs.version }}/" ${{ env.SPEC_FILE }}
+      - name: Copy opensuse specfile to rpm build location
+        run: cp ${{ env.SPEC_FILE }} /usr/src/packages/SPECS
+      - name: Create rpm binary file
+        run: |
+          cd /usr/src/packages/SPECS
+          rpmbuild -bb vinyl.spec
+          rpm_file=$(find /usr/src/packages/RPMS/x86_64 -name "*.rpm*" ! -name "*src*" ! -name "*debug*")
+          echo "rpm_file = $rpm_file"
+          mv $rpm_file /usr/src/packages/RPMS/x86_64/darkly-${{ inputs.version }}.openSUSE-tumbleweed.x86_64.rpm
+          echo "RPM_ASSET= /usr/src/packages/RPMS/x86_64/darkly-${{ inputs.version }}.openSUSE-tumbleweed.x86_64.rpm" >> "$GITHUB_ENV"
+      - name: Release
+        uses: softprops/action-gh-release@v2.0.8
+        if: startsWith(github.ref, 'refs/tags/')
+        with:
+          files: ${{ env.RPM_ASSET }}
