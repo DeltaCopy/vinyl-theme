@@ -10,6 +10,9 @@ on:
       version:
         required: true
         type: string
+      containers:
+        required: true
+        type: string
 env:
   SPEC_FILE: $GITHUB_WORKSPACE/.github/assets/specs/vinyl.spec
 jobs:
