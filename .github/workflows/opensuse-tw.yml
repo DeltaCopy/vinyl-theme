@@ -17,6 +17,10 @@ env:
   SPEC_FILE: $GITHUB_WORKSPACE/.github/assets/specs/vinyl.spec
 jobs:
   build:
+    strategy:
+      max-parallel: 1
+      matrix:
+        image: ${{ fromJson(inputs.containers) }}
     runs-on: ubuntu-24.04
     container: ${{ matrix.image }}
     steps:
