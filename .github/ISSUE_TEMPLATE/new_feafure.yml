@@ -1,0 +1,30 @@
+name: New Feature Report
+description: File a new feature report.
+about: Create a report to help us improve
+title: "[Feature Request]: "
+labels: ["feature-request"]
+assignees: ''
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for taking the time to fill out this new feature report!
+  - type: textarea
+    id: what-new-feat-info
+    attributes:
+      label: Describe the new feature
+      description: A clear and concise description of what new feature.
+      placeholder: ""
+      value: "A clear and concise description of what new feature you would like added"
+    validations:
+      required: true
+  - type: textarea
+    id: what-new-feat-screenshot  
+    attributes:
+      label: Add screenshot
+      description: If applicable add screenshots to help explain the new feature
+      placeholder: Tell us how this new feature would look like
+      value: "If applicable add screenshots to help describe this new feature."
+    validations:
+      required: false
+
