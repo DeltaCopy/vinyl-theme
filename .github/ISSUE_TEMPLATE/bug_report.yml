@@ -79,7 +79,7 @@ body:
       required: true
   - type: dropdown
     id: session
-    attributes::
+    attributes:
       label: Session
       description: Are you using Wayland / X11 ?
       options:
