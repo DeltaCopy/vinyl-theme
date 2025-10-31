@@ -13,7 +13,7 @@ body:
       label: Describe the new feature
       description: A clear and concise description of the new feature.
       placeholder: "A clear and concise description of the new feature."
-      value: "A clear and concise description of what new feature you would like added"
+      value: "Adding clear information helps describe what new feature you would like added"
     validations:
       required: true
   - type: textarea
@@ -22,7 +22,7 @@ body:
       label: Add screenshot
       description: If applicable add screenshots to help explain the new feature
       placeholder: Tell us how this new feature would look like
-      value: "If applicable add screenshots to help describe this new feature."
+      value: "Adding screenshots help describe how the new feature would look."
     validations:
       required: false
 
