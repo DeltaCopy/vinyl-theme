@@ -12,37 +12,43 @@ body:
     attributes:
       label: Describe the bug
       description: A clear and concise description of what the bug is.
-      placeholder: "A clear and concise description of what the bug is."
+      placeholder: "A clear and concise description helps us understand what the bug is."
       value: "Describe what the bug is using a clear and concise description."
     validations:
       required: true
   - type: dropdown
-    id: version-vinyl
+    id: version-vinyl-release
     attributes:
-      label: Version
+      label: Vinyl theme version
       description: Which version of the Vinyl theme are you using?
       options:
         - 6.5.0
         - 6.4.5
         - 6.4.4
         - 6.4.3
-        - Git revision
       default: 0
     validations:
       required: true
   - type: textarea
+    id: version-vinyl-git
+    attributes:
+      label: Vinyl theme version from git
+      description: Provide the git details here
+      placeholder: "git main branch - with commit id"
+      value: "Specify the branch and the commit id"
+  - type: textarea
     id: version-plasma
     attributes:
-      label: Version
+      label: Plasma version
       description: Which version of Plasma are you using?
       placeholder: "Plasma 6.5.0"
-      value: "Plasma Version"
+      value: "Plasma version"
     validations:
       required: true
   - type: dropdown
     id: version-qt
     attributes:
-      label: Version
+      label: Qt version
       description: Which version of QT are you using?
       options:
         - 6.10
@@ -65,16 +71,16 @@ body:
       label: Which distribution are you using ?
       description: Which distribution are you using?
       placeholder: ".e.g Arch Linux"
-      value: "The Linux distribution being used"
+      value: ".e.g Arch Linux"
     validations:
       required: true
   - type: textarea
     id: color-scheme
     attributes:
       label: Which color-scheme are you using ?
-      description: Which color-scheme are you using?
+      description: The color-scheme in use
       placeholder: "Provide the name of the color-scheme, and if applicable a link to download the color-scheme"
-      value: "The color-scheme being used"
+      value: ".e.g Breeze Dark"
     validations:
       required: true
   - type: dropdown
@@ -94,9 +100,9 @@ body:
       label: Is fractional scaling being used ?
       description: Fractional scaling in use ?
       options:
-        - n
         - y
-      default: 0
+        - n
+      default: 1
     validations:
       required: true
   - type: textarea
@@ -107,4 +113,4 @@ body:
       placeholder: "Additional information"
       value: "Additional information"
     validations:
-      required: true
+      required: false
