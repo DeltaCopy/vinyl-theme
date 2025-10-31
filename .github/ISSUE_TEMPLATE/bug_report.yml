@@ -47,7 +47,7 @@ body:
       options:
         - 6.10
         - 6.9
-      default: 0      
+      default: 0
     validations:
       required: true
   - type: textarea
@@ -73,14 +73,14 @@ body:
     attributes:
       label: Which color-scheme are you using ?
       description: Which color-scheme are you using?
-      placeholder: "Provide the name of the color-scheme, and if applicable a link to download the color-scheme" 
+      placeholder: "Provide the name of the color-scheme, and if applicable a link to download the color-scheme"
       value: "The color-scheme being used"
     validations:
       required: true
   - type: dropdown
     id: session
     attributes:
-      label: Session
+      label: Wayland / X11 session in use ?
       description: Are you using Wayland / X11 ?
       options:
         - Wayland
@@ -90,11 +90,13 @@ body:
       required: true
   - type: dropdown
     id: fractional-scaling
-    description: Fractional scaling in use ?
-    options:
-      - n
-      - y
-    default: 0
+    attributes:
+      label: Is fractional scaling being used ?
+      description: Fractional scaling in use ?
+      options:
+        - n
+        - y
+      default: 0
     validations:
       required: true
   - type: textarea
