@@ -19,7 +19,7 @@ body:
   - type: textarea
     id: what-new-feat-screenshot  
     attributes:
-      label: Add screenshot
+      label: Add screenshots to describe the new feature
       description: If applicable add screenshots to help explain the new feature
       placeholder: Tell us how this new feature would look like
       value: "Adding screenshots help describe how the new feature would look."
