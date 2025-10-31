@@ -1,9 +1,7 @@
 name: Bug Report
 description: File a bug report.
-about: Create a report to help us improve
 title: "[Bug]: "
 labels: ["bug"]
-type: bug
 body:
   - type: markdown
     attributes:
@@ -14,7 +12,7 @@ body:
     attributes:
       label: Describe the bug
       description: A clear and concise description of what the bug is.
-      placeholder: ""
+      placeholder: "A clear and concise description of what the bug is."
       value: "A clear and concise description of what the bug is."
     validations:
       required: true
@@ -38,7 +36,7 @@ body:
       label: Version
       description: Which version of Plasma are you using?
       placeholder: "Plasma 6.5.0"
-      value: ""
+      value: "Plasma 6.5.0"
     validations:
       required: true
   - type: dropdown
@@ -67,7 +65,7 @@ body:
       label: Which distribution are you using ?
       description: Which distribution are you using?
       placeholder: ".e.g Arch Linux"
-      value: ""
+      value: ".e.g Arch Linux"
     validations:
       required: true
   - type: textarea
@@ -75,7 +73,7 @@ body:
     attributes:
       label: Which color-scheme are you using ?
       description: Which color-scheme are you using?
-      placeholder: "" 
+      placeholder: ".e.g. Breeze Dark" 
       value: ".e.g Breeze Dark"
     validations:
       required: true
@@ -105,6 +103,6 @@ body:
       label: Add any other context about the bug here
       description: Add any other context about the bug here
       placeholder: "Additional information"
-      value: ""
+      value: "Additional information"
     validations:
       required: true
