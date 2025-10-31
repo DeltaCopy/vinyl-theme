@@ -1,6 +1,5 @@
 name: New Feature Report
 description: File a new feature report.
-about: Create a report to help us improve
 title: "[Feature Request]: "
 labels: ["feature-request"]
 body:
@@ -12,8 +11,8 @@ body:
     id: what-new-feat-info
     attributes:
       label: Describe the new feature
-      description: A clear and concise description of what new feature.
-      placeholder: ""
+      description: A clear and concise description of the new feature.
+      placeholder: "A clear and concise description of the new feature."
       value: "A clear and concise description of what new feature you would like added"
     validations:
       required: true
